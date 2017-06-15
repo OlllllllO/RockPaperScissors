@@ -1,0 +1,117 @@
+<<<<<<< HEAD
+# installation instructions for setting up the Dragonboard for ELC registration.
+
+#-------------------- Components needed for the setup ------------------------------#
+#	1. Dragonboard 410c (https://www.arrow.com/en/products/dragonboard410c/arrow-development-tools)
+# 	2. USB Camera 
+# 	3. USB 2.0 Travel Hub expander
+#	4. HDMI monitor
+#	5. SD Card with Debian image (http://builds.96boards.org/releases/dragonboard410c/linaro/debian/latest/dragonboard410c_sdcard_install_debian-*.zip)
+#-----------------------------------------------------------------------------------#
+
+#----------------------Software used in the project---------------------------------#
+#	1. Python
+#	2. PHP
+#	3. Opencv
+#	4. PHPMailer
+#	5. Epiphany Browser
+#------------------------------------------------------------------------------------#
+
+# Step.1 : Install Debian operating system on the Dragonboard with the SD card image. 
+#Follow instructions here: http://www.96boards.org/documentation/ConsumerEdition/DragonBoard-410c/Installation/WindowsSD.md/
+
+# Step.2 : Update and install software components with the following commands
+
+sudo su
+apt-get update
+apt-get upgrade
+apt-get install -y python-opencv
+apt-get install apache2 php5 php-pear
+pear install mail
+pear install Net_SMTP
+apt-get install cron git
+# add the following line to the cron
+*/30 * * * * cd /var/www/html/Register/assets;php cronmail.php
+
+apt-get install epiphany-browser
+update-alternatives --config x-www-browser
+#select browser by entering the corresponding number.
+
+# make changes to default epiphany behavior- 
+# schema is located at /usr/share/glib-2.0/schemas/org.gnome.epiphany.gschema.xml
+# update this schema withthe modified schema file included in this project
+#recompile the browser schema
+apt-get install libglib2.0-bin
+glib-compile-schemas /usr/share/glib-2.0/schemas
+# restart epiphany
+
+
+#Step.3 Download the project files from Github 
+git clone https://github.com/OlllllllO/Home-Automation-Sweepstakes
+cd Home-Automation-Sweepstakes/
+mv html/ /var/www/
+
+#launch the demo with the lbp cascade. 
+python register.py cascades/lbpcascade_frontalface.xml
+
+
+
+=======
+# installation instructions for setting up the Dragonboard for ELC registration.
+
+#-------------------- Components needed for the setup ------------------------------#
+#	1. Dragonboard 410c (https://www.arrow.com/en/products/dragonboard410c/arrow-development-tools)
+# 	2. USB Camera 
+# 	3. USB 2.0 Travel Hub expander
+#	4. HDMI monitor
+#	5. SD Card with Debian image (http://builds.96boards.org/releases/dragonboard410c/linaro/debian/latest/dragonboard410c_sdcard_install_debian-*.zip)
+#-----------------------------------------------------------------------------------#
+
+#----------------------Software used in the project---------------------------------#
+#	1. Python
+#	2. PHP
+#	3. Opencv
+#	4. PHPMailer
+#	5. Epiphany Browser
+#------------------------------------------------------------------------------------#
+
+# Step.1 : Install Debian operating system on the Dragonboard with the SD card image. 
+#Follow instructions here: http://www.96boards.org/documentation/ConsumerEdition/DragonBoard-410c/Installation/WindowsSD.md/
+
+# Step.2 : Update and install software components with the following commands
+
+sudo su
+apt-get update
+apt-get upgrade
+apt-get install -y python-opencv
+apt-get install apache2 php5 php-pear
+pear install mail
+pear install Net_SMTP
+apt-get install cron git
+# add the following line to the cron
+*/30 * * * * cd /var/www/html/Register/assets;php cronmail.php
+
+apt-get install epiphany-browser
+update-alternatives --config x-www-browser
+#select browser by entering the corresponding number.
+
+# make changes to default epiphany behavior- 
+# schema is located at /usr/share/glib-2.0/schemas/org.gnome.epiphany.gschema.xml
+# update this schema withthe modified schema file included in this project
+#recompile the browser schema
+apt-get install libglib2.0-bin
+glib-compile-schemas /usr/share/glib-2.0/schemas
+# restart epiphany
+
+
+#Step.3 Download the project files from Github 
+git clone https://github.com/OlllllllO/Home-Automation-Sweepstakes
+cd Home-Automation-Sweepstakes/
+mv html/ /var/www/
+
+#launch the demo with the lbp cascade. 
+python register.py cascades/lbpcascade_frontalface.xml
+
+
+
+>>>>>>> origin/master
